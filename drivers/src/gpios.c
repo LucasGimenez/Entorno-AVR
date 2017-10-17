@@ -1,4 +1,5 @@
 #include <avr/io.h>
+#include <util/delay.h>
 #include <stdio.h>
 #include <gpios.h>
 
@@ -84,4 +85,19 @@ void pinMode (port_u puerto,const int pin, IO_u tipo){
         }
 }
 
+void pinToggle(port_u puerto, const int pin) {
+	
+	estado_u  state;
+	
+	state = digitalRead(puerto, pin);
 
+	if (state == LOW ) {
+		digitalWrite(puerto, pin, LOW );
+		_delay_ms(500);
+	}
+
+	else { 
+		digitalWrite(puerto, pin, HIGH);
+		_delay_ms(500);
+	}
+}
